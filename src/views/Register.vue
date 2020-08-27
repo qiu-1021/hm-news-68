@@ -1,5 +1,5 @@
 <template>
-  <div>注册组件</div>
+  <div>我是注册组件</div>
 </template>
 
 <script>
