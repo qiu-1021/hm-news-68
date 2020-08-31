@@ -26,7 +26,7 @@
       />
       <div style="margin: 16px;">
         <van-button round block type="info" native-type="submit">
-          提交
+          注册
         </van-button>
       </div>
       <p class="tips">已有账号？==><router-link to="/login">登陆</router-link></p>
@@ -65,7 +65,11 @@ export default {
       const { statusCode, message } = res.data
       if (statusCode === 200) {
         this.$toast.success(message)
-        this.$router.push('/login')
+        // this.$router.push(`/login?username=${this.user.username}&password=${this.user.password}`)
+        this.$router.push({
+          name: 'login',
+          params: this.user
+        })
       } else {
         this.$toast.fail(message)
       }
@@ -74,5 +78,13 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less" scoped>
+.tips {
+  padding: 15px;
+  font-size: 16px;
+  text-align: right;
+  a {
+    color: yellow;
+  }
+}
 </style>

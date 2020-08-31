@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		function fn (obj) {
+			// try { 有可能报错的代码 } catch (e) { 报错后的处理 }
+			try {
+				console.log(obj.name)
+			} catch (e) {
+				console.log('异常处理')
+			}
+			console.log('hhh')
+		}
+		fn()
+	</script>
+</body>
+</html>
