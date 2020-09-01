@@ -1,59 +1,22 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import Vant, { Toast } from 'vant'
+import VueCropper from 'vue-cropper'
+import './views/Demo.vue'
 import 'amfe-flexible'
-import HmHeader from './components/HmHeader.vue'
-import HmLogo from './components/HmLogo.vue'
-import axios from 'axios'
-import HmNavItem from './components/HmNavtem.vue'
-import moment from 'moment'
-
+// 全局注册组件引入
+import './utils/global'
+// 全局配置axios请求
+import './utils/request'
+// 全局注册过滤器
+import './utils/filters'
+// 导入vant
+import './utils/vant'
 // 导入通用样式
 import './style/base.less'
 import './style/iconfont.css'
-import 'vant/lib/index.css'
 
-// 全局注册组件
-Vue.component('hm-header', HmHeader)
-Vue.component('hm-logo', HmLogo)
-Vue.component('hm-navitem', HmNavItem)
-
-// 把axios挂载到vue的原型
-Vue.prototype.$axios = axios
-// 给axios配置默认的baseURL ,基准地址
-axios.defaults.baseURL = 'http://localhost:3000'
-// 给axios配置拦截器
-axios.interceptors.request.use(function (config) {
-  // config指的是请求的配置信息
-  // console.log('拦截到了请求', config)
-  const token = localStorage.getItem('token')
-  if (token) {
-    config.headers.Authorization = token
-  }
-  return config
-})
-axios.interceptors.response.use(function (response) {
-  console.log('拦截到了响应', response)
-  const { statusCode, message } = response.data
-  if (statusCode === 401 && message === '用户验证信息失败') {
-    console.log('token失效')
-    // 跳转登陆页面
-    router.push('/login')
-    // 清除失败信息
-    localStorage.removeItem('token')
-    localStorage.removeItem('userId')
-    // 给提示 用户验证失败
-    Toast.fail('登陆信息失败')
-  }
-  return response
-})
-// 定义全局过滤器
-Vue.filter('time', input => {
-  return moment(input).format('YYYY-MM-DD')
-})
-// 导入Vant
-Vue.use(Vant)
+Vue.use(VueCropper)
 Vue.config.productionTip = false
 
 new Vue({

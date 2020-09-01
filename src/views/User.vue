@@ -1,6 +1,6 @@
 <template>
   <div class="user">
-    <div class="header">
+    <div class="header" @click="$router.push('./user-edit')">
       <div class="avatar">
         <!-- 路径必须为绝对路径 -->
         <img :src="$axios.defaults.baseURL+user.head_img" alt="">
@@ -31,7 +31,7 @@
 <template>我的收藏</template>
 <template #content>文章/视频</template>
 </hm-navitem>
-<hm-navitem to="/exit">设置</hm-navitem>
+<hm-navitem to="/user-edit">设置</hm-navitem>
 <div style="margin: 15px">
   <van-button type="primary" block @click="logout">退出</van-button>
 </div>
