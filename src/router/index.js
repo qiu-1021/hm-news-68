@@ -8,6 +8,7 @@ import UserEdit from '../views/user/UserEdit.vue'
 import Demo from '../views/user/Demo.vue'
 import MyFollow from '../views/user/MyFollow.vue'
 import MyComment from '../views/user/MyComment.vue'
+import MyStar from '../views/user/MyStar.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -17,7 +18,8 @@ const routes = [
   { path: '/user-edit', component: UserEdit, name: 'user-edit' },
   { path: '/demo', component: Demo, name: 'demo' },
   { path: '/myfollow', component: MyFollow, name: 'myfollow' },
-  { path: '/mycomment', component: MyComment, name: 'mycomment' }
+  { path: '/mycomment', component: MyComment, name: 'mycomment' },
+  { path: '/mystar', component: MyStar, name: 'mystar' }
 ]
 // 全局的把push的异常给处理了
 const originalPush = VueRouter.prototype.push
@@ -45,7 +47,7 @@ router.beforeEach(function (to, from, next) {
   //   next()
   // }
   const token = localStorage.getItem('token')
-  const authUrls = ['/user', '/user-edit', './myfollow', './mycomment']
+  const authUrls = ['/user', '/user-edit', './myfollow', './mycomment', './mystar']
   if (!authUrls.includes(to.path) || token) {
     next()
   } else {

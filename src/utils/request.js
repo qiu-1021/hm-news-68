@@ -35,3 +35,11 @@ axios.interceptors.response.use(function (response) {
   }
   return response
 })
+Vue.prototype.$url = function (url) {
+  if (url.startsWith('http')) {
+    // 网络图片
+    return url
+  } else {
+    return URL + url
+  }
+}
