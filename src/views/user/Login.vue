@@ -52,7 +52,11 @@ export default {
         localStorage.setItem('token', data.token)
         localStorage.setItem('userId', data.user.id)
         // 跳转个人中心
-        this.$router.push('/user')
+        if (this.$route.query.back) {
+          this.$router.back()
+        } else {
+          this.$router.push('/user')
+        }
       } else {
         this.$toast.fail('登陆失败')
       }

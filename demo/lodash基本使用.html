@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<input type="text">
+	<script src="../node_modules/lodash/lodash.js"></script>
+	<script>
+		console.log(_.random(1,3))
+		// 参数1： 需要执行的函数  参数2： 时间间隔
+		// 返回一个防抖函数
+		// _.debounce(fn, time)
+		var input = document.querySelector('input')
+		var newFn = _.debounce(function () {
+			console.log(input.value)
+		}, 1000)
+		input.oninput = newFn
+	</script>
+</body>
+</html>

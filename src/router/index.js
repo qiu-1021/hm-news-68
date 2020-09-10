@@ -1,14 +1,18 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 // 导入组件
-import Login from '../views/user/Login.vue'
-import Register from '../views/user/Register.vue'
-import User from '../views/user/User.vue'
-import UserEdit from '../views/user/UserEdit.vue'
-import Demo from '../views/user/Demo.vue'
-import MyFollow from '../views/user/MyFollow.vue'
-import MyComment from '../views/user/MyComment.vue'
-import MyStar from '../views/user/MyStar.vue'
+const Login = () => import(/* webpackChunkName: "user" */ '../views/user/Login.vue')
+const Register = () => import(/* webpackChunkName: "user" */'../views/user/Register.vue')
+const User = () => import(/* webpackChunkName: "user" */'../views/user/User.vue')
+const UserEdit = () => import(/* webpackChunkName: "user" */'../views/user/UserEdit.vue')
+const Demo = () => import(/* webpackChunkName: "user" */'../views/user/Demo.vue')
+const MyFollow = () => import(/* webpackChunkName: "user" */'../views/user/MyFollow.vue')
+const MyComment = () => import(/* webpackChunkName: "user" */'../views/user/MyComment.vue')
+const MyStar = () => import(/* webpackChunkName: "user" */'../views/user/MyStar.vue')
+const Index = () => import(/* webpackChunkName: "index" */'../views/news/Index.vue')
+const Manage = () => import(/* webpackChunkName: "news" */'../views/news/Manage.vue')
+const PostDetail = () => import(/* webpackChunkName: "news" */'../views/news/PostDetail.vue')
+const Search = () => import(/* webpackChunkName: "news" */'../views/news/Search.vue')
 Vue.use(VueRouter)
 
 const routes = [
@@ -19,7 +23,11 @@ const routes = [
   { path: '/demo', component: Demo, name: 'demo' },
   { path: '/myfollow', component: MyFollow, name: 'myfollow' },
   { path: '/mycomment', component: MyComment, name: 'mycomment' },
-  { path: '/mystar', component: MyStar, name: 'mystar' }
+  { path: '/mystar', component: MyStar, name: 'mystar' },
+  { path: '/', component: Index, name: 'index' },
+  { path: '/manage', component: Manage, name: 'manage' },
+  { path: '/post-detail/:id', component: PostDetail, name: 'post-detail' },
+  { path: '/search', component: Search, name: 'search' }
 ]
 // 全局的把push的异常给处理了
 const originalPush = VueRouter.prototype.push
@@ -27,6 +35,7 @@ VueRouter.prototype.push = function push (location) {
   return originalPush.call(this, location).catch(err => err)
 }
 const router = new VueRouter({
+  mode: 'history',
   routes
 })
 // 配置全局导航卫士
